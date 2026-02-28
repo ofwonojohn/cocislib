@@ -2,8 +2,10 @@ package com.cocis.examhub.controller;
 
 import com.cocis.examhub.dto.CourseDTO;
 import com.cocis.examhub.dto.CourseUnitDTO;
+import com.cocis.examhub.dto.CourseUnitRequestDTO;
 import com.cocis.examhub.service.CourseService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,5 +48,30 @@ public class CourseController {
             @PathVariable Long id,
             @RequestParam Integer year) {
         return ResponseEntity.ok(courseService.getSemestersByCourseIdAndYear(id, year));
+    }
+    
+    // Course Unit CRUD Endpoints
+    
+    @PostMapping("/course-units")
+    public ResponseEntity<CourseUnitDTO> createCourseUnit(@RequestBody CourseUnitRequestDTO request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(courseService.createCourseUnit(request));
+    }
+    
+    @PutMapping("/course-units/{id}")
+    public ResponseEntity<CourseUnitDTO> updateCourseUnit(
+            @PathVariable Long id, 
+            @RequestBody CourseUnitRequestDTO request) {
+        return ResponseEntity.ok(courseService.updateCourseUnit(id, request));
+    }
+    
+    @DeleteMapping("/course-units/{id}")
+    public ResponseEntity<Void> deleteCourseUnit(@PathVariable Long id) {
+        courseService.deleteCourseUnit(id);
+        return ResponseEntity.noContent().build();
+    }
+    
+    @GetMapping("/course-units/{id}")
+    public ResponseEntity<CourseUnitDTO> getCourseUnitById(@PathVariable Long id) {
+        return ResponseEntity.ok(courseService.getCourseUnitById(id));
     }
 }
