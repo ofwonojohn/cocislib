@@ -107,10 +107,10 @@ function LandingPage() {
           Notes Section - Coming Soon
         </span>
         <button
-          onClick={() => navigate('/admin/upload')}
+          onClick={() => navigate('/admin')}
           className="text-white/40 hover:text-cocis-gold text-xs transition-colors"
         >
-          Admin Upload
+          Admin Panel
         </button>
       </motion.div>
     </div>
