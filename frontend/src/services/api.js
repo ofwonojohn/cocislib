@@ -17,6 +17,12 @@ export const getCourseUnits = (id) => api.get(`/courses/${id}/course-units`)
 export const getCourseYears = (id) => api.get(`/courses/${id}/years`)
 export const getCourseSemesters = (id, year) => api.get(`/courses/${id}/semesters?year=${year}`)
 
+// Course Unit CRUD APIs
+export const createCourseUnit = (data) => api.post('/courses/course-units', data)
+export const updateCourseUnit = (id, data) => api.put(`/courses/course-units/${id}`, data)
+export const deleteCourseUnit = (id) => api.delete(`/courses/course-units/${id}`)
+export const getCourseUnitById = (id) => api.get(`/courses/course-units/${id}`)
+
 // Exam APIs
 export const getExamPapers = (params) => {
   const { course, year, semester, type, academicYear, courseUnitName, page = 0, size = 20 } = params
